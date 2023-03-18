@@ -40,5 +40,8 @@ mongoose.connection.once('open',() => {
 
 mongoose.connection.on('error',err => {
     console.log(err)
-    logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,'mongoErrLog.log')
+    if(err.no)
+        logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,'mongoErrLog.log')
 })
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}!`))
